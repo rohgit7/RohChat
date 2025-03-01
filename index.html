@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>RohChat</title>
+  <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script defer src="script.js"></script>
+  <style>
+    /* General Styles */
+    @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Exo:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rubik+Mono+One&display=swap');
+    *{
+        font-family: "Concert One", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+    
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #121212; /* Dark background */
+      color: #ffffff; /* White text */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #f1f1f1;
+      margin-bottom: 10px;
+    }
+
+    /* Chat Container */
+    #message-container {
+      width: 90%;
+      max-width: 600px;
+      background: #1e1e1e; /* Slightly lighter dark background */
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 15px;
+      height: 60%;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Chat Message Bubble */
+    .message-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .message {
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      max-width: 70%;
+      word-wrap: break-word;
+      color: #ffffff;
+    }
+
+    .message.self {
+      background-color: #4a52e2; 
+      margin-left: auto;
+      border-bottom-right-radius: 0;
+    }
+
+    .message.other {
+      background-color: #3a3a3a; /* Gray for others' messages */
+      margin-right: auto;
+      border-bottom-left-radius: 0;
+    }
+
+    .message.system {
+      align-self: center;
+      background: none;
+      color: #bbbbbb; /* Light gray for system messages */
+      font-style: italic;
+    }
+
+    /* Input Form */
+    #send-container {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #333;
+      border-radius: 20px;
+      font-size: 1rem;
+      background-color: #1e1e1e;
+      color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    input::placeholder {
+      color: #888888; /* Placeholder text */
+    }
+
+    button {
+    background-color: #4a52e2;
+      padding: 10px 20px;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #363ba9;
+    }
+
+    button:active {
+      background-color: #2d329a;
+    }
+
+    /* Scrollbar Styling */
+    #message-container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #message-container::-webkit-scrollbar-track {
+      background: #1e1e1e;
+    }
+
+    #message-container::-webkit-scrollbar-thumb {
+      background-color: #555555;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>RohChat</h1>
+  <div id="message-container"></div>
+  <form id="send-container">
+    <input type="text" id="message-input" placeholder="Type your message..." required>
+    <button type="submit" id="send-button">Send</button>
+  </form>
+</body>
+</html>

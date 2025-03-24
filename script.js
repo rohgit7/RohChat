@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-const socket = io('http://localhost:4000');
+const socket = io('http://localhost:5000');
 =======
 const socket = io('https://rohchat.onrender.com');
 >>>>>>> ec5bdb053fdc5ed4e9253ace1025b97f124ec964

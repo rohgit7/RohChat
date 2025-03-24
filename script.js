@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 const socket = io('http://localhost:4000');
+=======
+const socket = io('https://rohchat.onrender.com');
+>>>>>>> ec5bdb053fdc5ed4e9253ace1025b97f124ec964
 const messageContainer = document.getElementById('message-container');
 const messageForm = document.getElementById('send-container');
 const messageInput = document.getElementById('message-input');
 
-// Prompt user for their name
+
 const name = prompt('What is your name?') || 'Anonymous';
 appendMessage('You joined', 'system');
 socket.emit('new-user', name);
